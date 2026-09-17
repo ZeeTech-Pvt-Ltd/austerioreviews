@@ -62,9 +62,13 @@ export default function App() {
     }
   }, [f, keyword, searchParams])
 
-  // Each keyword lands on the same page: brand display and offerName both
-  // follow the ?f= param, so leads are tagged per keyword.
-  const campaign = { brand, offerName: keyword || DEFAULT_OFFER_NAME, subid }
+  // Each keyword lands on the same page: brand display follows the ?f=
+  // param and leads are tagged per keyword as "<keyword>-LP".
+  const campaign = {
+    brand,
+    offerName: keyword ? `${keyword}-LP` : DEFAULT_OFFER_NAME,
+    subid,
+  }
 
   useEffect(() => {
     document.title = `${brand} - Smart Trading Made Simple`
